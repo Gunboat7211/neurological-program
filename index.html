@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neurological and Mental Health Survey</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Neurological and Mental Health Survey</h1>
+    </header>
+    
+    <main>
+        <form id="surveyForm">
+            <section class="demographic-info">
+                <label>Age: <input type="number" name="age" required></label>
+                <label>Gender: 
+                    <select name="gender">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </label>
+                <label>Education Level: <input type="text" name="education" required></label>
+                <label>Occupation: <input type="text" name="occupation" required></label>
+            </section>
+
+            <section class="phq-9">
+                <label>1. Little interest or pleasure in doing things:
+                    <select name="interest">
+                        <option value="0">Not at all</option>
+                        <option value="1">Several days</option>
+                        <option value="2">More than half the days</option>
+                        <option value="3">Nearly every day</option>
+                    </select>
+                </label>
+                <label>2. Feeling down, depressed, or hopeless:
+                    <select name="depressed">
+                        <option value="0">Not at all</option>
+                        <option value="1">Several days</option>
+                        <option value="2">More than half the days</option>
+                        <option value="3">Nearly every day</option>
+                    </select>
+                </label>
+                <label>3. Trouble falling or staying asleep, or sleeping too much:
+                    <select name="sleeping">
+                        <option value="0">Not at all</option>
+                        <option value="1">Several days</option>
+                        <option value="2">More than half the days</option>
+                        <option value="3">Nearly every day</option>
+                    </select>
+                </label>
+                <label>4. Feeling tired or having little energy:
+                    <select name="energy">
+                        <option value="0">Not at all</option>
+                        <option value="1">Several days</option>
+                        <option value="2">More than half the days</option>
+                        <option value="3">Nearly every day</option>
+                    </select>
+                </label>
+                <label>5. Poor appetite or overeating:
+                    <select name="appetite">
+                        <option value="0">Not at all</option>
+                        <option value="1">Several days</option>
+                        <option value="2">More than half the days</option>
+                        <option value="3">Nearly every day</option>
+                    </select>
+                </label>
+                <label>6. Feeling bad about yourself, or that you are a failure:
+                    <select name="selfesteem">
+                        <option value="0">Not at all</option>
+                        <option value="1">Several days</option>
+                        <option value="2">More than half the days</option>
+                        <option value="3">Nearly every day</option>
+                    </select>
+                </label>
+                <label>7. Trouble concentrating on things:
+                    <select name="concentration">
+                        <option value="0">Not at all</option>
+                        <option value="1">Several days</option>
+                        <option value="2">More than half the days</option>
+                        <option value="3">Nearly every day</option>
+                    </select>
+                </label>
+                <label>8. Moving or speaking so slowly that others could notice:
+                    <select name="motoractivity">
+                        <option value="0">Not at all</option>
+                        <option value="1">Several days</option>
+                        <option value="2">More than half the days</option>
+                        <option value="3">Nearly every day</option>
+                    </select>
+                </label>
+                <label>9. Thoughts that you would be better off dead:
+                    <select name="selfharm">
+                        <option value="0">Not at all</option>
+                        <option value="1">Several days</option>
+                        <option value="2">More than half the days</option>
+                        <option value="3">Nearly every day</option>
+                    </select>
+                </label>
+            </section>
+
+            <section class="anxiety-symptoms">
+                <label>10. Feeling nervous, anxious, or on edge:
+                    <select name="nervous">
+                        <option value="0">Not at all</option>
+                        <option value="1">Several days</option>
+                        <option value="2">More than half the days</option>
+                        <option value="3">Nearly every day</option>
+                    </select>
+                </label>
+                <label>11. Not being able to stop or control worrying:
+                    <select name="worrying">
+                        <option value="0">Not at all</option>
+                        <option value="1">Several days</option>
+                        <option value="2">More than half the days</option>
+                        <option value="3">Nearly every day</option>
+                    </select>
+                </label>
+                <label>12. Worrying too much about different things:
+                    <select name="excessiveWorry">
+                        <option value="0">Not at all</option>
+                        <option value="1">Several days</option>
+                        <option value="2">More than half the days</option>
+                        <option value="3">Nearly every day</option>
+                    </select>
+                </label>
+                <label>13. Trouble relaxing:
+                    <select name="troubleRelaxing">
+                        <option value="0">Not at all</option>
+                        <option value="1">Several days</option>
+                        <option value="2">More than half the days</option>
+                        <option value="3">Nearly every day</option>
+                    </select>
+                </label>
+                <label>14. Being so restless that it is hard to sit still:
+                    <select name="restlessness">
+                        <option value="0">Not at all</option>
+                        <option value="1">Several days</option>
+                        <option value="2">More than half the days</option>
+                        <option value="3">Nearly every day</option>
+                    </select>
+                </label>
+                <label>15. Becoming easily annoyed or irritable:
+                    <select name="irritability">
+                        <option value="0">Not at all</option>
+                        <option value="1">Several days</option>
+                        <option value="2">More than half the days</option>
+                        <option value="3">Nearly every day</option>
+                    </select>
+                </label>
+                <label>16. Feeling afraid as if something awful might happen:
+                    <select name="fear">
+                        <option value="0">Not at all</option>
+                        <option value="1">Several days</option>
+                        <option value="2">More than half the days</option>
+                        <option value="3">Nearly every day</option>
+                    </select>
+                </label>
+            </section>
+
+            <button type="button" onclick="calculateResults()">Submit</button>
+        </form>
+
+        <div id="results"></div>
+
+        <div id="feedbackSection">
+            <h2>Feedback</h2>
+            <form id="feedbackForm">
+                <label for="feedback">Please provide your feedback:</label>
+                <textarea id="feedback" name="feedback" rows="4" required></textarea>
+                <button type="button" onclick="submitFeedback()">Submit Feedback</button>
+            </form>
+        </div>
+
+        <!-- Modal for Hospital Redirect -->
+        <div id="hospitalModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>Thank you for your submission!</h2>
+                <p>Your responses suggest:</p>
+                <div id="diagnosis"></div>
+                <p>If you need further assistance, you can visit the hospital.</p>
+                <button onclick="redirectToHospital()">Go to Hospital</button>
+            </div>
+        </div>
+    </main><div id="progressContainer">
+        <div id="progressBar"></div>
+    </div>
+    
+</body>
+</html>
+
+
+

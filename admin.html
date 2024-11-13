@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>Admin Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Survey</a></li>
+                <li><a href="admin.html" class="active">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="responseOverview">
+            <h2>Responses Overview</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Score</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="responseTableBody">
+                    <!-- Dynamic content will be added here via JavaScript -->
+                </tbody>
+            </table>
+        </section>
+        
+        <section id="analytics">
+            <h2>Analytics</h2>
+            <div id="chartContainer">
+                <!-- Chart visualization will be rendered here -->
+                <canvas id="responseChart"></canvas>
+            </div>
+        </section>
+        
+        <section id="feedback">
+            <h2>Feedback</h2>
+            <textarea id="adminFeedback" placeholder="Enter feedback or notes here..."></textarea>
+            <button id="submitFeedback">Submit Feedback</button>
+        </section>
+    </main>
+
+    <script src="admin.js"></script> <!-- Link to your JavaScript file -->
+</body>
+</html>
+// Sample data for responses (this would typically come from a database)
+const responses = [
+    { id: 1, name: 'John Doe', email: 'john@example.com', score: 15, date: '2024-10-30' },
+    { id: 2, name: 'Jane Smith', email: 'jane@example.com', score: 20, date: '2024-10-29' },
+    // Add more sample data as needed
+];
+
+// Function to render responses in the table
+function renderResponses() {
+    const tableBody = document.getElementById('responseTableBody');
+    tableBody.innerHTML = ''; // Clear previous entries
+
+    responses.forEach(response => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${response.id}</td>
+            <td>${response.name}</td>
+            <td>${response.email}</td>
+            <td>${response.score}</td>
+            <td>${response.date}</td>
+            <td>
+                <button onclick="deleteResponse(${response.id})">Delete</button>
+            </td>
+        `;
+        tableBody.appendChild(row);
+    });
+}
+
+// Function to delete a response
+function deleteResponse(id) {
+    const index = responses.findIndex(response => response.id === id);
+    if (index > -1) {
+        responses.splice(index, 1); // Remove the response from the array
+        renderResponses(); // Re-render the table
+    }
+}
+
+// Function to handle feedback submission
+document.getElementById('submitFeedback').addEventListener('click', function() {
+    const feedback = document.getElementById('adminFeedback').value;
+    alert('Feedback submitted: ' + feedback);
+    document.getElementById('adminFeedback').value = ''; // Clear the textarea
+});
+
+// Render the responses initially
+renderResponses();
+
+async function renderChart() {
+    const responseData = await fetch('/api/responses');
+    const responses = await responseData.json();
+    
+    const labels = responses.map(res => res.name); // Customize as needed
+    const scores = responses.map(res => res.score);
+
+    const ctx = document.getElementById('responseChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar', // Change to 'line', 'pie', etc. as needed
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Survey Scores',
+                data: scores,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+
+// Call the function after the page loads
+document.addEventListener('DOMContentLoaded', renderChart);
